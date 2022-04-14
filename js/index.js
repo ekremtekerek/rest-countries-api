@@ -126,10 +126,10 @@ function showCountryDetail(data) {
                         <strong>Top Level Domain :</strong> ${data.topLevelDomain}
                     </p>
                     <p>
-                        <strong>Currencies :</strong> ${data.currencies}
+                        <strong>Currencies :</strong> ${data.currencies.map(elem => elem.name)}
                     </p>
                     <p>
-                        <strong>Languages :</strong> ${data.languages}
+                        <strong>Languages :</strong> ${data.languages.map(elem => elem.name)}
                     </p>
                 </div>
             </div>    
