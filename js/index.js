@@ -21,7 +21,8 @@ function showCountry(data) {
     "overflow-hidden",
     "rounded",
     "w-80",
-    "country-wrapper"
+    "country-wrapper",
+    "cursor-pointer"
   );
   country.innerHTML = `
     <div class="card mb-20">
@@ -47,14 +48,15 @@ function showCountry(data) {
 </div>   
     `;
   countriesElem.appendChild(country);
-  country.addEventListener("click", () => {
+  country.addEventListener("click", (e) => {
     showCountryDetail(data);
+    e.preventDefault();
   });
 }
 
+
 dropDown.addEventListener("click", () => {
   dropElem.classList.toggle("toggle");
-  console.log("hello");
 });
 
 const regionName = document.getElementsByClassName("regionName");
@@ -86,10 +88,12 @@ search.addEventListener("input", () => {
     }
   });
 });
-const countryModal = document.querySelector(".countries-modal");
 
 function showCountryDetail(data) {
-  countryModal.classList.toggle("toggle");
+    const countryModal = document.querySelector(".countries-modal");
+
+  countryModal.classList.toggle("show");
+
   countryModal.innerHTML = `
     <div class="countryModal fixed top-0 left-0 w-full h-full p-10">
     <button class="countryModal__back  top-12 left-10 px-4">Back</button>
@@ -127,7 +131,6 @@ function showCountryDetail(data) {
                     <p>
                         <strong>Languages :</strong> ${data.capital}
                     </p>
-
                 </div>
             </div>    
         </div>
@@ -138,6 +141,7 @@ function showCountryDetail(data) {
   const back = countryModal.querySelector(".countryModal__back");
 
   back.addEventListener("click", () => {
-    countryModal.classList.toggle("toggle");
+    countryModal.classList.toggle("show");
   });
+
 }
