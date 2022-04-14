@@ -106,7 +106,7 @@ function showCountryDetail(data) {
             <div class="flex justify-between">
                 <div class="countryModal__inner-left mr-40">
                     <p>
-                        <strong>Native Name :</strong> ${data.population}
+                        <strong>Native Name :</strong> ${data.nativeName}
                     </p>
                     <p>
                         <strong>Population :</strong> ${data.population}
