@@ -109,13 +109,13 @@ function showCountryDetail(data) {
                         <strong>Native Name :</strong> ${data.population}
                     </p>
                     <p>
-                        <strong>Population :</strong> ${data.region}
+                        <strong>Population :</strong> ${data.population}
                     </p>
                     <p>
-                        <strong>Region :</strong> ${data.capital}
+                        <strong>Region :</strong> ${data.region}
                     </p>
                     <p>
-                        <strong>Sub Region :</strong> ${data.capital}
+                        <strong>Sub Region :</strong> ${data.subregion}
                     </p>
                     <p>
                         <strong>Capital :</strong> ${data.capital}
@@ -123,13 +123,13 @@ function showCountryDetail(data) {
                 </div>
                 <div class="countryModal__inner-right">
                     <p>
-                        <strong>Top Level Domain :</strong> ${data.population}
+                        <strong>Top Level Domain :</strong> ${data.topLevelDomain}
                     </p>
                     <p>
-                        <strong>Currencies :</strong> ${data.region}
+                        <strong>Currencies :</strong> ${data.currencies}
                     </p>
                     <p>
-                        <strong>Languages :</strong> ${data.capital}
+                        <strong>Languages :</strong> ${data.languages}
                     </p>
                 </div>
             </div>    
