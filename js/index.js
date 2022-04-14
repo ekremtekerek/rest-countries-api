@@ -4,23 +4,26 @@ const dropElem = document.querySelector(".header__region--drop");
 const region = document.querySelectorAll(".region");
 const search = document.querySelector(".header__searchInput");
 
-
 console.log(countriesElem);
 async function getCountry() {
-    const url = await fetch("https://restcountries.com/v2/all");
-    const res = await url.json();
-    
+  const url = await fetch("https://restcountries.com/v2/all");
+  const res = await url.json();
 
-    res.forEach(e => {
-        showCountry(e)
-    });
+  res.forEach((e) => {
+    showCountry(e);
+  });
 }
 
-getCountry()
+getCountry();
 function showCountry(data) {
-    const country = document.createElement("figure");
-    country.classList.add("overflow-hidden", "rounded", "w-80", "country-wrapper");
-    country.innerHTML = `
+  const country = document.createElement("figure");
+  country.classList.add(
+    "overflow-hidden",
+    "rounded",
+    "w-80",
+    "country-wrapper"
+  );
+  country.innerHTML = `
     <div class="card mb-20">
         <div class="h-52">
             <a href="">
@@ -43,37 +46,98 @@ function showCountry(data) {
         </div>   
 </div>   
     `;
-    countriesElem.appendChild(country);
+  countriesElem.appendChild(country);
+  country.addEventListener("click", () => {
+    showCountryDetail(data);
+  });
 }
 
-dropDown.addEventListener('click', () => {
-    dropElem.classList.toggle("toggle")
-    console.log("hello");
+dropDown.addEventListener("click", () => {
+  dropElem.classList.toggle("toggle");
+  console.log("hello");
 });
 
 const regionName = document.getElementsByClassName("regionName");
 const countryName = document.getElementsByClassName("countryName");
 
-region.forEach(element => {
-    element.addEventListener('click', ()=>{
-        console.log(element);
-        Array.from(regionName).forEach(elem => {
-            console.log(elem.innerText);
-           if (elem.innerText.includes(element.innerText) || element.innerText=="All" ) {
-                elem.parentElement.parentElement.parentElement.style.display="grid"
-           } else {
-               elem.parentElement.parentElement.parentElement.style.display="none"
-           }
-        });
-    })
+region.forEach((element) => {
+  element.addEventListener("click", () => {
+    console.log(element);
+    Array.from(regionName).forEach((elem) => {
+      console.log(elem.innerText);
+      if (
+        elem.innerText.includes(element.innerText) ||
+        element.innerText == "All"
+      ) {
+        elem.parentElement.parentElement.parentElement.style.display = "grid";
+      } else {
+        elem.parentElement.parentElement.parentElement.style.display = "none";
+      }
+    });
+  });
 });
 
-search.addEventListener('input', () => {
-    Array.from(countryName).forEach(elem => {
-       if (elem.innerText.toLowerCase().includes(search.value.toLowerCase())) {
-            elem.parentElement.parentElement.parentElement.style.display="grid"
-       } else {
-           elem.parentElement.parentElement.parentElement.style.display="none"
-       }
-    });
-})
+search.addEventListener("input", () => {
+  Array.from(countryName).forEach((elem) => {
+    if (elem.innerText.toLowerCase().includes(search.value.toLowerCase())) {
+      elem.parentElement.parentElement.parentElement.style.display = "grid";
+    } else {
+      elem.parentElement.parentElement.parentElement.style.display = "none";
+    }
+  });
+});
+const countryModal = document.querySelector(".countries-modal");
+
+function showCountryDetail(data) {
+  countryModal.classList.toggle("toggle");
+  countryModal.innerHTML = `
+    <div class="countryModal fixed top-0 left-0 w-full h-full p-10">
+    <button class="countryModal__back  top-12 left-10 px-4">Back</button>
+    <div class="countryModal__modal flex justify-center w-full h-full items-center">
+        <div class="countryModal__left-modal mr-40 w-96">
+            <img src=" ${data.flag}" alt="">
+        </div>
+        <div class="countryModal__right-modal">
+            <h1>  ${data.name}</h1>
+            <div class="flex justify-between">
+                <div class="countryModal__inner-left mr-40">
+                    <p>
+                        <strong>Native Name :</strong> ${data.population}
+                    </p>
+                    <p>
+                        <strong>Population :</strong> ${data.region}
+                    </p>
+                    <p>
+                        <strong>Region :</strong> ${data.capital}
+                    </p>
+                    <p>
+                        <strong>Sub Region :</strong> ${data.capital}
+                    </p>
+                    <p>
+                        <strong>Capital :</strong> ${data.capital}
+                    </p>
+                </div>
+                <div class="countryModal__inner-right">
+                    <p>
+                        <strong>Top Level Domain :</strong> ${data.population}
+                    </p>
+                    <p>
+                        <strong>Currencies :</strong> ${data.region}
+                    </p>
+                    <p>
+                        <strong>Languages :</strong> ${data.capital}
+                    </p>
+
+                </div>
+            </div>    
+        </div>
+    </div>
+</div>
+    `;
+
+  const back = countryModal.querySelector(".countryModal__back");
+
+  back.addEventListener("click", () => {
+    countryModal.classList.toggle("toggle");
+  });
+}

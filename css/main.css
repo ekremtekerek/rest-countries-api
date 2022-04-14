@@ -71,7 +71,7 @@ body, .countryModal {
     font-weight: 900;
 }
 
-.header__search, .header__region, .header__region--drop {
+.header__search, .header__region, .header__region--drop, .countryModal__back {
     background-color: hsl(209, 23%, 22%);
     -webkit-box-shadow: 0px 1px 7px 0px hsl(207, 26%, 17%);
     -moz-box-shadow: 0px 1px 7px 0px hsl(207, 26%, 17%);
@@ -92,5 +92,5 @@ body, .countryModal {
 }
 
 .toggle {
-    display: none;
+    display: none!important;
 }
